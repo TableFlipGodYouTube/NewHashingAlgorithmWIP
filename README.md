@@ -1,2 +1,2 @@
-# NewHashingAlgorithmWIP
+# CustomHashingAlg
 Created with CodeSandbox
