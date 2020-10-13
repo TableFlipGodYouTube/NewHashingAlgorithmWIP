@@ -148,18 +148,24 @@ function Decode(input) {
   for (let i = 0; i < input.length; i++) {
     let temp = "";
     if (newTable.indexOf(input[i]) + 24 > newTable.length) {
+      let Diff = newTable.indexOf(input[i]) + 24 - 8;
+      console.log("DDiff" + Diff);
+      temp = temp + Diff + 24 * -1;
+      console.log("DDiff temp: " + temp);
+    } else if (newTable.indexOf(input[i]) - 24 < 8) {
       let Diff = newTable.indexOf(input[i]) - 24 + 8;
       console.log("Diff" + Diff);
       temp = temp + Diff - 24 * -1;
       console.log("Diff temp: " + temp);
     } else {
-      temp = temp + newTable.indexOf(input[i]) - 24;
+      temp = newTable.indexOf(input[i]) + 24;
+      console.log(newTable.indexOf(input[i]) + 24);
     }
     final = final + newTable[temp];
   }
   return final;
 }
-let ok = Encode("c");
+let ok = Encode("This isnt cool");
 //Qefp!fp!kbt!BkWlafkd
 console.log("Encoded: " + ok);
 console.log("Decoded: " + Decode(ok));
