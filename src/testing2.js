@@ -152,10 +152,11 @@ function Decode(input) {
       console.log("DDiff" + Diff);
       temp = temp + Diff + 24 * -1;
       console.log("DDiff temp: " + temp);
-    } else if (newTable.indexOf(input[i]) - 24 < 8) {
+    }
+    if (newTable.indexOf(input[i]) - 24 < 8) {
       let Diff = newTable.indexOf(input[i]) - 24 + 8;
       console.log("Diff" + Diff);
-      temp = temp + Diff - 24 * -1;
+      temp = Diff - 24 * -1;
       console.log("Diff temp: " + temp);
     } else {
       temp = newTable.indexOf(input[i]) + 24;
