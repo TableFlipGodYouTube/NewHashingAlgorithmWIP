@@ -126,7 +126,35 @@ while (iter < letters.length) {
     temp++;
   }
 }
-console.log(newTable);
+newTable.pop(undefined);
+iter = -1;
+temp = 0;
+while (iter < letters.length) {
+  if (CheckNumber(temp) != null) {
+    iter++;
+    newTable.push(letters[iter]);
+    temp++;
+  } else {
+    newTable.push(null);
+    temp++;
+  }
+}
+newTable.pop(undefined);
+iter = -1;
+temp = 0;
+while (iter < letters.length) {
+  if (CheckNumber(temp) != null) {
+    iter++;
+    newTable.push(letters[iter]);
+    temp++;
+  } else {
+    newTable.push(null);
+    temp++;
+  }
+}
+newTable.pop(undefined);
+
+//console.log(newTable);
 function Encode(input) {
   let final = "";
   for (let i = 0; i < input.length; i++) {
@@ -166,7 +194,9 @@ function Decode(input) {
   }
   return final;
 }
-let ok = Encode("This isnt cool");
+//let ok = Encode("This isnt cool");
 //Qefp!fp!kbt!BkWlafkd
-console.log("Encoded: " + ok);
-console.log("Decoded: " + Decode(ok));
+//console.log("Encoded: " + ok);
+//console.log("Decoded: " + Decode(ok));
+
+console.log(newTable.indexOf("a", 9));
