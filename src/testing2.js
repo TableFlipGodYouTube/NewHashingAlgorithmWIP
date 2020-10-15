@@ -245,7 +245,8 @@ function Encode(input) {
       console.log(
         "Letter: " + newTable[newTable.indexOf(input[i]) - 8] + " " + input[i]
       );
-      temp = newTable.indexOf(input[i]) - 8;
+      //*****************8 */
+      temp = newTable.indexOf(input[i]) - 24;
     } else {
       temp = newTable.indexOf(input[i]) - 24;
       console.log("pp");
