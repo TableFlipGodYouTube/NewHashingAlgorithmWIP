@@ -234,22 +234,21 @@ function Encode(input) {
   for (let i = 0; i < input.length; i++) {
     let temp = "";
     if (newTable.indexOf(input[i]) - 24 > newTable.length) {
-      let Diff = newTable.indexOf(input[i]) - 24 + 8;
-      //console.log("DDiff" + Diff);
-      temp = temp + Diff - 24 * -1;
+      let Diff = newTable.indexOf(input[i]) - 24;
+      console.log("DDiff" + Diff);
+      temp = Diff;
       //console.log("DDiff temp: " + temp);
     }
-    if (newTable.indexOf(input[i]) - 24 < 8) {
+    if (newTable.indexOf(input[i]) - 24 < 32) {
       let Diff = newTable.indexOf(input[i]) - 24;
-      if (newTable[newTable.indexOf(input[i])] === "Z") {
-        temp = newTable.indexOf(input[i]) - 8;
-      } else {
-        console.log("Letter: " + newTable[newTable.indexOf(input[i]) - 24]);
-        temp = Diff;
-      }
+      console.log("DDDDIFFF: " + Diff);
+      console.log(
+        "Letter: " + newTable[newTable.indexOf(input[i]) - 8] + " " + input[i]
+      );
+      temp = newTable.indexOf(input[i]) - 8;
     } else {
       temp = newTable.indexOf(input[i]) - 24;
-      //console.log(newTable.indexOf(input[i]) + 24);
+      console.log("pp");
     }
     final = final + newTable[temp];
   }
@@ -265,12 +264,12 @@ function Decode(input) {
       temp = temp + Diff + 24 * -1;
       //console.log("DDiff temp: " + temp);
     }
-    if (newTable.indexOf(input[i]) + 24 < 8) {
+    if (newTable.indexOf(input[i]) + 24 < 32) {
       let Diff = newTable.indexOf(input[i]) + 24;
       if (newTable[newTable.indexOf(input[i])] === "Z") {
         temp = newTable.indexOf(input[i]) + 40;
       } else {
-        console.log("Letter: " + newTable[newTable.indexOf(input[i]) + 24]);
+        //console.log("Letter: " + newTable[newTable.indexOf(input[i]) + 24]);
         temp = Diff;
       }
     } else {
@@ -285,3 +284,4 @@ let ok = Encode("game:GetService('Players').LocalPlayer.Name");
 //Qefp!fp!kbt!BkWlafkd
 console.log("Encoded: " + ok);
 console.log("Decoded: " + Decode(ok));
+console.log(newTable.indexOf("c", 9) - 24);
