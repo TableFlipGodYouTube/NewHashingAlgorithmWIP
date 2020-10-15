@@ -132,7 +132,7 @@ newTable.push(null);
 newTable.push(null);
 newTable.push(null);
 newTable.push(null);
-newTable.push("Z");
+newTable.push("X");
 newTable.push(null);
 newTable.push(null);
 newTable.push(null);
@@ -241,15 +241,13 @@ function Encode(input) {
     }
     if (newTable.indexOf(input[i]) - 24 < 32) {
       let Diff = newTable.indexOf(input[i]) - 24;
-      console.log("DDDDIFFF: " + Diff);
-      console.log(
-        "Letter: " + newTable[newTable.indexOf(input[i]) - 8] + " " + input[i]
-      );
+      //console.log("DDDDIFFF: " + Diff);
+      //console.log("Letter: " + newTable[newTable.indexOf(input[i]) - 24] + " " + input[i]);
       //*****************8 */
       temp = newTable.indexOf(input[i]) - 24;
     } else {
       temp = newTable.indexOf(input[i]) - 24;
-      console.log("pp");
+      //console.log("pp" + temp);
     }
     final = final + newTable[temp];
   }
@@ -281,7 +279,7 @@ function Decode(input) {
   }
   return final;
 }
-let ok = Encode("game:GetService('Players').LocalPlayer.Name");
+let ok = Encode("text");
 //Qefp!fp!kbt!BkWlafkd
 console.log("Encoded: " + ok);
 console.log("Decoded: " + Decode(ok));
