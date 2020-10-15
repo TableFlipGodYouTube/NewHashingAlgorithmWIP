@@ -116,6 +116,30 @@ newTable.push(null);
 newTable.push(null);
 newTable.push(null);
 newTable.push(null);
+newTable.push("Z");
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push("Y");
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push("Z");
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
 while (iter < letters.length) {
   if (CheckNumber(temp) != null) {
     iter++;
@@ -153,19 +177,79 @@ while (iter < letters.length) {
   }
 }
 newTable.pop(undefined);
-
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push("a");
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push("b");
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push("c");
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
+newTable.push(null);
 //console.log(newTable);
-function Encode(input) {
+function Encode1(input) {
   let final = "";
   for (let i = 0; i < input.length; i++) {
     let temp = "";
     if (newTable.indexOf(input[i]) - 24 < 8) {
-      let Diff = newTable.indexOf(input[i]) - 24 + 8;
-      console.log("Diff" + Diff);
+      let Diff = newTable.indexOf(input[i]) - 24;
+      //console.log("Diff" + Diff);
       temp = temp + Diff - 24 * -1;
-      console.log("Diff temp: " + temp);
+      //console.log("Diff temp: " + temp);
     } else {
       temp = temp + newTable.indexOf(input[i]) - 24;
+    }
+    final = final + newTable[temp];
+  }
+  return final;
+}
+function Encode(input) {
+  let final = "";
+  for (let i = 0; i < input.length; i++) {
+    let temp = "";
+    if (newTable.indexOf(input[i]) - 24 > newTable.length) {
+      let Diff = newTable.indexOf(input[i]) - 24 + 8;
+      //console.log("DDiff" + Diff);
+      temp = temp + Diff - 24 * -1;
+      //console.log("DDiff temp: " + temp);
+    }
+    if (newTable.indexOf(input[i]) - 24 < 8) {
+      let Diff = newTable.indexOf(input[i]) - 24;
+      if (newTable[newTable.indexOf(input[i])] === "Z") {
+        temp = newTable.indexOf(input[i]) - 8;
+      } else {
+        console.log("Letter: " + newTable[newTable.indexOf(input[i]) - 24]);
+        temp = Diff;
+      }
+    } else {
+      temp = newTable.indexOf(input[i]) - 24;
+      //console.log(newTable.indexOf(input[i]) + 24);
     }
     final = final + newTable[temp];
   }
@@ -177,26 +261,27 @@ function Decode(input) {
     let temp = "";
     if (newTable.indexOf(input[i]) + 24 > newTable.length) {
       let Diff = newTable.indexOf(input[i]) + 24 - 8;
-      console.log("DDiff" + Diff);
+      //console.log("DDiff" + Diff);
       temp = temp + Diff + 24 * -1;
-      console.log("DDiff temp: " + temp);
+      //console.log("DDiff temp: " + temp);
     }
-    if (newTable.indexOf(input[i]) - 24 < 8) {
-      let Diff = newTable.indexOf(input[i]) - 24 + 8;
-      console.log("Diff" + Diff);
-      temp = Diff - 24 * -1;
-      console.log("Diff temp: " + temp);
+    if (newTable.indexOf(input[i]) + 24 < 8) {
+      let Diff = newTable.indexOf(input[i]) + 24;
+      if (newTable[newTable.indexOf(input[i])] === "Z") {
+        temp = newTable.indexOf(input[i]) + 40;
+      } else {
+        console.log("Letter: " + newTable[newTable.indexOf(input[i]) + 24]);
+        temp = Diff;
+      }
     } else {
       temp = newTable.indexOf(input[i]) + 24;
-      console.log(newTable.indexOf(input[i]) + 24);
+      //console.log(newTable.indexOf(input[i]) + 24);
     }
     final = final + newTable[temp];
   }
   return final;
 }
-//let ok = Encode("This isnt cool");
+let ok = Encode("game:GetService('Players').LocalPlayer.Name");
 //Qefp!fp!kbt!BkWlafkd
-//console.log("Encoded: " + ok);
-//console.log("Decoded: " + Decode(ok));
-
-console.log(newTable.indexOf("a", 9));
+console.log("Encoded: " + ok);
+console.log("Decoded: " + Decode(ok));
