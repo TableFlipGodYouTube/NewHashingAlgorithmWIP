@@ -255,6 +255,15 @@ function Encode(input) {
 }
 
 function EncodeWithSalt(input, salt) {
+  let sult = "";
+  let sult2 = "";
+  for (let i = 0; i < salt.length; i++) {
+    sult = sult + Encode(salt[i]);
+  }
+  for (let i = 0; i < sult.length; i++) {
+    sult2 = sult2 + Encode(sult[i]);
+  }
+  console.log(sult2);
   let final = "";
   for (let i = 0; i < input.length; i++) {
     let temp = "";
@@ -305,7 +314,8 @@ function Decode(input) {
   }
   return final;
 }
-let ok = Encode("test");
+let ok = EncodeWithSalt("test", "keklord");
+ok = Encode("keklord");
 //Qefp!fp!kbt!BkWlafkd
 console.log("Encoded: " + ok);
 console.log("Decoded: " + Decode(ok));
