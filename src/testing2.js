@@ -253,6 +253,32 @@ function Encode(input) {
   }
   return final;
 }
+
+function EncodeWithSalt(input, salt) {
+  let final = "";
+  for (let i = 0; i < input.length; i++) {
+    let temp = "";
+    if (newTable.indexOf(input[i]) - 24 > newTable.length) {
+      let Diff = newTable.indexOf(input[i]) - 24;
+      console.log("DDiff" + Diff);
+      temp = Diff;
+      //console.log("DDiff temp: " + temp);
+    }
+    if (newTable.indexOf(input[i]) - 24 < 32) {
+      let Diff = newTable.indexOf(input[i]) - 24;
+      //console.log("DDDDIFFF: " + Diff);
+      //console.log("Letter: " + newTable[newTable.indexOf(input[i]) - 24] + " " + input[i]);
+      //*****************8 */
+      temp = newTable.indexOf(input[i]) - 24;
+    } else {
+      temp = newTable.indexOf(input[i]) - 24;
+      //console.log("pp" + temp);
+    }
+    final = final + newTable[temp];
+  }
+  return final;
+}
+
 function Decode(input) {
   let final = "";
   for (let i = 0; i < input.length; i++) {
@@ -279,8 +305,7 @@ function Decode(input) {
   }
   return final;
 }
-let ok = Encode("text");
+let ok = Encode("test");
 //Qefp!fp!kbt!BkWlafkd
 console.log("Encoded: " + ok);
 console.log("Decoded: " + Decode(ok));
-console.log(newTable.indexOf("c", 9) - 24);
