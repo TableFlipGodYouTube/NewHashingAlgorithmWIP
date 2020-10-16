@@ -253,7 +253,22 @@ function Encode(input) {
   }
   return final;
 }
+function insertString(string, index, tooadd) {
+  let origString = string;
+  let stringToAdd = tooadd;
+  let indexPosition = index;
 
+  // Split the string into individual
+  // characters
+  origString = origString.split("");
+
+  // Insert the string at the index position
+  origString.splice(indexPosition, 0, stringToAdd);
+
+  // Join back the individual characters
+  // to form a new string
+  return origString.join("");
+}
 function EncodeWithSalt(input, salt) {
   let sult = "";
   let sult2 = "";
@@ -263,6 +278,7 @@ function EncodeWithSalt(input, salt) {
   for (let i = 0; i < sult.length; i++) {
     sult2 = sult2 + Encode(sult[i]);
   }
+  //Append at 4th pos
   console.log(sult2);
   let final = "";
   for (let i = 0; i < input.length; i++) {
@@ -285,9 +301,45 @@ function EncodeWithSalt(input, salt) {
     }
     final = final + newTable[temp];
   }
+  for (let i = 0; i < final.length + sult2.length; i++) {}
   return final;
 }
+function remove_character(str, char_pos) {
+  let part1 = str.substring(0, char_pos);
+  let part2 = str.substring(char_pos + 1, str.length);
+  return part1 + part2;
+}
 
+function DecodeWithSalt(input) {
+  let final = "";
+  let final2 = "";
+  for (let i = 0; i < input.length; i++) {
+    let temp = "";
+    if (newTable.indexOf(input[i]) + 24 > newTable.length) {
+      let Diff = newTable.indexOf(input[i]) + 24 - 8;
+      //console.log("DDiff" + Diff);
+      temp = temp + Diff + 24 * -1;
+      //console.log("DDiff temp: " + temp);
+    }
+    if (newTable.indexOf(input[i]) + 24 < 32) {
+      let Diff = newTable.indexOf(input[i]) + 24;
+      if (newTable[newTable.indexOf(input[i])] === "Z") {
+        temp = newTable.indexOf(input[i]) + 40;
+      } else {
+        //console.log("Letter: " + newTable[newTable.indexOf(input[i]) + 24]);
+        temp = Diff;
+      }
+    } else {
+      temp = newTable.indexOf(input[i]) + 24;
+      //console.log(newTable.indexOf(input[i]) + 24);
+    }
+    final = final + newTable[temp];
+  }
+  for (let i = 0; i < final.length; i++) {
+    final2 = final + remove_character(final, 3);
+  }
+  return final2;
+}
 function Decode(input) {
   let final = "";
   for (let i = 0; i < input.length; i++) {
