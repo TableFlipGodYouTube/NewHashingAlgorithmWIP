@@ -269,6 +269,12 @@ function insertString(string, index, tooadd) {
   // to form a new string
   return origString.join("");
 }
+function add_character(str, toadd, pos) {
+  var a = str;
+  var b = toadd;
+  var position = pos;
+  return [a.slice(0, position), b, a.slice(position)].join("");
+}
 function EncodeWithSalt(input, salt) {
   let sult = "";
   let sult2 = "";
@@ -301,9 +307,21 @@ function EncodeWithSalt(input, salt) {
     }
     final = final + newTable[temp];
   }
-  for (let i = 0; i < final.length + sult2.length; i++) {}
-  return final;
+  let indexes = [];
+  for (let i = 0; i < final.length; i++) {
+    indexes.push(i * 2);
+  }
+  for (let i = 0; i < indexes.length; i++) {
+    console.log("index" + indexes[i]);
+  }
+  let f2 = "";
+  for (let i = 0; i < sult2.length; i++) {
+    console.log("OK" + final);
+    f2 = f2 + insertString(final, indexes[i], sult[i]);
+  }
+  return f2;
 }
+
 function remove_character(str, char_pos) {
   let part1 = str.substring(0, char_pos);
   let part2 = str.substring(char_pos + 1, str.length);
@@ -367,7 +385,7 @@ function Decode(input) {
   return final;
 }
 let ok = EncodeWithSalt("test", "keklord");
-ok = Encode("keklord");
+//ok = Encode("keklord");
 //Qefp!fp!kbt!BkWlafkd
 console.log("Encoded: " + ok);
 console.log("Decoded: " + Decode(ok));
